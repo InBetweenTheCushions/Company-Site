@@ -1,106 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Company Site Studio | Web Design for Small Businesses</title>
+  <meta charset="UTF-8">
   <style>
+    :root {
+      --void-black: #050505;
+      --glitch-red: #ff0000;
+      --glitch-cyan: #00ffff;
+      --bone-white: #f0f0f0;
+    }
+
     body {
+      background-color: var(--void-black);
+      color: var(--bone-white);
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #111;
-      background: #fafafa;
-      line-height: 1.6;
     }
-    header {
-      background: #0f172a;
-      color: white;
-      padding: 2.5rem 1.5rem; text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-    }
-    header p {
-      margin-top: 0.75rem;
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-    section {
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
-    }
-    h2 {
-      margin-bottom: 0.5rem;
-      color: #0f172a;
-    }
-    .services li {
-      margin-bottom: 0.5rem;
-    }
-    .cta {
-      background: #0f172a;
-      color: white;
-      padding: 3rem 1.5rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-    .cta a.button {
-      display: inline-block;
-      margin-top: 1rem;
-      background: white;
-      color: #0f172a;
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
+
+    /* Glitch Effect for Title */
+    .glitch {
+      font-size: 4rem;
       font-weight: bold;
-      border-radius: 4px;
+      text-transform: uppercase;
+      position: relative;
+      text-shadow: 0.05em 0 0 var(--glitch-red), -0.05em -0.025em 0 var(--glitch-cyan);
+      animation: glitch 500ms infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    .signal-text {
+      max-width: 600px;
+      text-align: center;
+      border: 1px solid var(--glitch-red);
+      padding: 20px;
+      margin-top: 20px;
+      background: rgba(255, 0, 0, 0.05);
+    }
+
+    .support-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      border: 1px solid var(--glitch-cyan);
+      color: var(--glitch-cyan);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .support-btn:hover {
+      background: var(--glitch-cyan);
+      color: black;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Company Site Studio</h1>
-    <p>Professional websites for small businesses that want to look legit and convert.</p>
-  </header>
-
-  <section>
-    <h2>What We Do</h2>
-    <p>
-      We design and build clean, modern websites for startups, creators, and small businesses.
-      No bloated platforms. No confusing tools. Just a site that works.
-    </p>
-  </section>
-
-  <section>
-    <h2>Services</h2>
-    <ul class="services">
-      <li>Custom business websites</li>
-      <li>Landing pages for products & services</li>
-      <li>Simple branding & layout design</li>
-      <li>Fast, secure hosting setup</li>
-    </ul>
-  </section>
-
-  <div class="cta">
-    <h2>Ready to get started?</h2>
-    <p>Let’s build something clean, fast, and effective.</p>
-    <a href="mailto:hello.companysitestudio@gmail.com" class="button">Contact Us</a>
-    
-    <p style="text-align:center; font-size:1.1rem; font-weight:500; color:#f5f5f5; margin-bottom: 0.5rem;">
-      We typically respond within 24 hours.
-    </p>
-
-    <p style="text-align:center; font-size:1rem; font-weight:500; color:#f5f5f5;">
-      Email us at <a href="mailto:hello.companysitestudio@gmail.com" style="color:#fafafa; font-weight:600; text-decoration:underline;">
-        hello.companysitestudio@gmail.com
-      </a>
-    </p>
+  <div class="glitch">INFINITE SYKOSIS</div>
+  
+  <div class="signal-text">
+    SIGNALS FROM UNKNOWN ENTITIES. PARADOXES IN REALITY. 
+    THE SINGULARITY RESIDES HERE.
   </div>
 
-  <footer style="text-align:center; font-size: 1rem; color: #222; padding: 1.5rem 0;">
-    © 2026 Company Site Studio · Web Design & Development
-  </footer>
+  <a href="https://www.patreon.com/Infinitesykosis" class="support-btn">FEED THE VOID</a>
 
 </body>
 </html>
