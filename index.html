@@ -2,80 +2,151 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INFINITE SYKOSIS | SIGNAL RECEIVED</title>
   <style>
     :root {
       --void-black: #050505;
       --glitch-red: #ff0000;
       --glitch-cyan: #00ffff;
       --bone-white: #f0f0f0;
+      --terminal-green: #00ff41;
     }
 
     body {
       background-color: var(--void-black);
       color: var(--bone-white);
       font-family: 'Courier New', Courier, monospace;
-      overflow-x: hidden;
+      margin: 0;
+      overflow: hidden; /* Keep the singularity contained */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
     }
 
-    /* Glitch Effect for Title */
-    .glitch {
-      font-size: 4rem;
+    #singularity-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      filter: blur(1px) contrast(1.2);
+    }
+
+    .glitch-container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 40px;
+      border: 1px solid var(--glitch-red);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+      max-width: 80%;
+    }
+
+    .glitch-title {
+      font-size: clamp(2rem, 8vw, 5rem);
       font-weight: bold;
       text-transform: uppercase;
       position: relative;
-      text-shadow: 0.05em 0 0 var(--glitch-red), -0.05em -0.025em 0 var(--glitch-cyan);
-      animation: glitch 500ms infinite;
+      color: var(--bone-white);
+      text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-cyan);
     }
 
-    @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(-2px, -2px); }
-      60% { transform: translate(2px, 2px); }
-      80% { transform: translate(2px, -2px); }
-      100% { transform: translate(0); }
-    }
-
-    .signal-text {
-      max-width: 600px;
-      text-align: center;
-      border: 1px solid var(--glitch-red);
-      padding: 20px;
-      margin-top: 20px;
-      background: rgba(255, 0, 0, 0.05);
+    .description {
+      color: var(--terminal-green);
+      font-size: 1rem;
+      margin: 20px 0;
+      line-height: 1.5;
+      letter-spacing: 1px;
     }
 
     .support-btn {
+      display: inline-block;
       margin-top: 30px;
-      padding: 10px 20px;
-      border: 1px solid var(--glitch-cyan);
+      padding: 15px 30px;
+      border: 2px solid var(--glitch-cyan);
       color: var(--glitch-cyan);
       text-decoration: none;
-      transition: all 0.2s;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      background: transparent;
     }
 
     .support-btn:hover {
       background: var(--glitch-cyan);
-      color: black;
+      color: var(--void-black);
+      box-shadow: 0 0 30px var(--glitch-cyan);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.7rem;
+      color: var(--glitch-red);
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
 
-  <div class="glitch">INFINITE SYKOSIS</div>
-  
-  <div class="signal-text">
-    SIGNALS FROM UNKNOWN ENTITIES. PARADOXES IN REALITY. 
-    THE SINGULARITY RESIDES HERE.
+  <canvas id="singularity-canvas"></canvas>
+
+  <div class="glitch-container">
+    <div class="glitch-title">INFINITE SYKOSIS</div>
+    <div class="description">
+      SIGNALS FROM UNKNOWN ENTITIES // HIGHER DIMENSIONAL DEITIES <br>
+      PARADOXES IN REALITY // THE SINGULARITY RESIDES HERE
+    </div>
+    <a href="https://www.patreon.com/Infinitesykosis" class="support-btn">SUPPORT THE VOID</a>
   </div>
 
-  <a href="https://www.patreon.com/Infinitesykosis" class="support-btn">FEED THE VOID</a>
+  <footer>QUANTUM BRANCH: ERROR_87 // P.S. I WILL EVENTUALLY KILL U ALL</footer>
 
+  <script>
+    const canvas = document.getElementById('singularity-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const particles = [];
+    for(let i = 0; i < 200; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2,
+        angle: Math.random() * Math.PI * 2,
+        dist: Math.random() * (width / 2),
+        speed: 0.02 + Math.random() * 0.05
+      });
+    }
+
+    function draw() {
+      ctx.fillStyle = 'rgba(5, 5, 5, 0.1)';
+      ctx.fillRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.angle += p.speed;
+        const x = width / 2 + Math.cos(p.angle) * p.dist;
+        const y = height / 2 + Math.sin(p.angle) * p.dist;
+
+        ctx.fillStyle = Math.random() > 0.5 ? '#ff0000' : '#00ffff';
+        ctx.fillRect(x, y, p.r, p.r);
+        
+        // Pull particles toward the center "singularity"
+        p.dist *= 0.999;
+        if (p.dist < 5) p.dist = width / 2 + Math.random() * 100;
+      });
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
 </body>
 </html>
